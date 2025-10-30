@@ -19,7 +19,7 @@ public class PlayerState
 
     }
 
-    public virtual void ProcessState()
+    public virtual void ProcessState(float delta)
     {
 
     }

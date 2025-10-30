@@ -16,16 +16,16 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         allStates.Add(new DrivingState(this));
-        allStates.Add(new PlayerState(this));
-        allStates.Add(new PlayerState(this));
+        allStates.Add(new DryState(this));
         currentState = allStates[0];
+        currentState.EnterState();
     }
 
     private void Update()
     {
         if(currentState != null)
         {
-            currentState.ProcessState();
+            currentState.ProcessState(Time.deltaTime);
         }
         if(transform.position.y > milestoneDistance)
         {
