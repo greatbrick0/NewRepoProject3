@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    public float milestoneDistance = 0;
+    [SerializeField]
+    public float maxSpeed { get; private set; } = 5.0f;
+    public float milestoneDistance = -10;
     public delegate void ReachedMilestoneDistance();
     public ReachedMilestoneDistance reachedMilestoneDistance;
 
@@ -13,9 +15,10 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
+        allStates.Add(new DrivingState(this));
         allStates.Add(new PlayerState(this));
         allStates.Add(new PlayerState(this));
-        allStates.Add(new PlayerState(this));
+        currentState = allStates[0];
     }
 
     private void Update()

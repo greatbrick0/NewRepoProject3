@@ -25,10 +25,13 @@ public class RoadManager : MonoBehaviour
         roadRefs.Add(Instantiate(roadObj, transform));
         roadRefs[roadRefs.Count - 1].transform.position = Vector2.up * currentDistance;
         currentDistance += 10;
+        playerManager.milestoneDistance += 10;
     }
 
     private void CycleRoads()
     {
         AddNewRoad();
+        Destroy(roadRefs[0]);
+        roadRefs.RemoveAt(0);
     }
 }
