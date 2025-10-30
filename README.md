@@ -1,5 +1,7 @@
 # NewRepoProject3
 
+WASD to move!
+
 Observer pattern:
 The road only generates when the player reaches the appropriate distance in which they need to see more road. The player has a delegate that only invokes when it reaches a certain distance. The road manager observes this delegate to create more road and delete old road when the player reacches their milestone. 
 
