@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DrivingState : PlayerState
 {
-    private float fuel = 60.0f;
+    private float fuel = 0.0f;
 
     public DrivingState(PlayerManager newPlayer) : base(newPlayer)
     {
@@ -11,7 +11,7 @@ public class DrivingState : PlayerState
 
     public override void EnterState()
     {
-        fuel = 5.0f;
+        fuel = 120.0f;
     }
 
     public override void ExitState()
@@ -29,10 +29,11 @@ public class DrivingState : PlayerState
 
         player.GetComponent<Rigidbody2D>().linearVelocity = dir.normalized * player.maxSpeed;
 
+        if (Input.GetKeyDown(KeyCode.K)) fuel = 0.0f;
         if (dir.magnitude > 0)
         {
             fuel -= delta;
-            Debug.Log(fuel);
+            //Debug.Log(fuel);
             if (fuel <= 0) player.ChangeState(1);
         }
     }

@@ -7,6 +7,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     public float maxSpeed { get; private set; } = 5.0f;
     public float milestoneDistance = -10;
+    public float highscore = 0.0f;
+    public bool isHighscoreDirty = false;
     public delegate void ReachedMilestoneDistance();
     public ReachedMilestoneDistance reachedMilestoneDistance;
 
@@ -19,6 +21,9 @@ public class PlayerManager : MonoBehaviour
         allStates.Add(new DryState(this));
         currentState = allStates[0];
         currentState.EnterState();
+
+        highscore = PlayerPrefs.GetFloat("highscore");
+        Debug.Log(highscore);
     }
 
     private void Update()
@@ -26,6 +31,10 @@ public class PlayerManager : MonoBehaviour
         if(currentState != null)
         {
             currentState.ProcessState(Time.deltaTime);
+        }
+        if (!isHighscoreDirty)
+        {
+            isHighscoreDirty = (transform.position.y > highscore);
         }
         if(transform.position.y > milestoneDistance)
         {
