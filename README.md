@@ -13,3 +13,5 @@ The player manager checks if the "highscore dirty flag" should become dirty only
 
 Object pooling:
 Previously, the above observer pattern destroyed and instantiated roads when a player reached a milestone. Now, roads that would be destroyed are set inactive and added to a separate "pool stack". If the stack has a road available, that road is then used and set active instead of instantiating a new road whenever needed. If the stack is empty when a new road is needed, a fallback case exists to instantiate the first few roads. 
+
+I feel that each implementation of these patterns are accurate to the pattern and an effecient application of the pattern. 
